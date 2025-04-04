@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claim Form</title>
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f4f4f4;
+        }
+
+        .container {
+            width: 400px;
+            background: rgb(199, 199, 199);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-box {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            position: relative;
+            
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 22px;
+            color: black;
+            text-align: center;
+            margin-bottom: 20px;
+        
+
+        }
+
+        input, select {
+            width: 90%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .result-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 16px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+       
+        .lottie-container {
+            position: absolute; /* Allows movement */
+            left: 70px;  /* Adjust left/right movement */
+            top: 170px;   /* Adjust up/down movement */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lottie-container">
+        <dotlottie-player 
+            src="https://lottie.host/25267082-eec7-4214-9698-d9addfcb2d29/1WzwJ1ZbmM.lottie" 
+            background="transparent" 
+            speed="1" 
+            style="width: 550px; height: 600px;" 
+            loop 
+            autoplay>
+        </dotlottie-player>
+    </div>
+
+    
+    <div class="container">
+        <div class="form-box">
+            <h2>Insurance Claim Prediction</h2>
+            <form action="/predict" method="POST">
+                <label>📅 Age:</label>
+                <input type="number" name="age" required>
+<br>
+                <label>🚻 Gender:</label>
+                <select name="gender">
+                    <option>select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+<br>
+                <label> BMI:</label>
+                <input type="number" name="bmi" step="0.1" required>
+                <br>
+                <label>👶 Number of Children:</label>
+                <input type="number" name="children" required>
+                <br>
+                <label>🚬 Smoker:</label>
+                <select name="smoker">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+                <br>
+                <label> 📍Region:</label>
+                <select name="region">
+                    <option value="northeast">Northeast</option>
+                    <option value="northwest">Northwest</option>
+                    <option value="southeast">Southeast</option>
+                    <option value="southwest">Southwest</option>
+                </select>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+   
+</body>
+</html>

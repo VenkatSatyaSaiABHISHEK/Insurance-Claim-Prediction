@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claim Prediction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .container {
+            display: flex;
+            align-items: center; /* Keeps text and animation aligned */
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1200px;
+            margin-top: -100px; /* Moves everything slightly higher */
+        }
+
+        .text-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .welcome {
+            color: #ff5733;
+            font-size: 3.5rem;
+            animation: fadeIn 2s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            color: white;
+            background-color: #ff5733;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #e64a19;
+        }
+
+        .animation-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .middle-lower-animation {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-section {
+            width: 80%;
+            max-width: 1200px;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff5733;
+        }
+
+        .about-content {
+            flex: 1;
+            text-align: left;
+        }
+        .box {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgb(255, 136, 0);
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+       
+        
+        }
+        input {
+            width: 100px;
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #030303;
+            border-radius: 5px;
+        }
+        button {
+            background: #ffbf00;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #ff8c00;
+        }
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .team-member {
+            text-align: center;
+        }
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffa200;
+        }
+        .team-member p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .animation-jump {
+            position: absolute;
+            width: 100%;
+            bottom: -3000px; /* Adjust this value to move it up or down */
+            display: flex;
+            justify-content: center;
+        }
+        .animation-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Left animation */
+        .left-animation{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative; /* Allows manual movement */
+    left: -100px; /* Change this value to move left or right */
+    transition: left 0.3s ease; /* Smooth movement */
+}
+
+
+        /* Button styling */
+        .animated-button {
+            position: fixed;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: transparent; /* Button color */
+    border: 1px solid black;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    
+    /* Shape modifications */
+    width: 130px; /* Long width */
+    height: 30px; /* Circular height */
+    border-radius: 50px; /* Fully rounded edges */
+    padding: 10px 20px;
+}
+
+.animated-button:hover {
+    background-color: #ff5733;
+    cursor: pointer; /* Darker shade on hover */
+}
+
+        /* Button text */
+        .button-text {
+    font-size: 16px;
+    color: #010101;
+}
+.boxcontainer {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            border: 4px solid white;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .box {
+            background: white;
+            padding: 40px;
+            width: 200px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ff5733;
+            text-align: center;
+        }
+        .box h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .box p {
+            color: #4a4a4a;
+        }
+        .box a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff5733;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <div class="container">
+        <div class="text-section">
+            <h1>
+                <span class="welcome">Insurance </span> Claim Prediction
+            </h1>
+            <p>Predict your insurance claims with accuracy and ease.</p>
+            <a href="" class="btn">Get Started</a>
+        </div>
+
+        <div class="animation-section">
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+            <dotlottie-player 
+                src="https://lottie.host/21ffe5ac-6f1c-48b9-9c9e-c1c72733afcd/AIgFTFJLq9.lottie" 
+                background="transparent" 
+                speed="1" 
+                style="width: 600px; height: 600px;" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+        </div>
+
+        <div class="middle-lower-animation">
+            <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+            <dotlottie-player 
+                src="https://lottie.host/9bfffe1d-2e9e-46f2-9397-35c58ad364af/zCAHtVpY8d.lottie" 
+                background="transparent" 
+                speed="1" 
+                style="width: 150px; height: 150px" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+        </div>
+
+        
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <br>
+    <br>
+
+    <h2 class="about-title">Insurance Claim Prediction to Check</h2>
+    <div class="boxcontainer">
+
+
+        <!-- Cube Boxes -->
+        <div class="box">
+            <h2>HEALTH</h2>
+<i class='bx bx-health bx-flip-horizontal bx-tada' style='color:#ff5733; font-size:100px;'></i>
+<p>Check if your HEALTH insurance claim will be approved</p>
+
+            <a href="/home" >Click</a>
+        </div>
+        <div class="box">
+            <h2>LIFE </h2>
+            <i class='bx bx-plus-medical bx-tada bx-flip-horizontal' style='color:#ff5733 ; font-size:100px; ' ></i>
+            <p>Check if your LIFE insurance claim will be approved</p>
+            <a href="/health" >Click</a>
+        </div>
+        <div class="box">
+            <h2> HOUSE </h2>
+            <i class='bx bx-building-house bx-tada bx-flip-horizontal' style='color:#ff5733 ; font-size:100px;' ></i>
+            <p>Check if your HOUSE insurance claim will be approved</p>
+            <a href="/house/predict">Click</a>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div id="about" class="about-section">
+        
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+<dotlottie-player src="https://lottie.host/e88f089e-817c-4e75-bf92-64db7a536abe/d2icA8TC9C.lottie" background="transparent" speed="1" style="width: 300px; height: 300px" loop autoplay></dotlottie-player>
+
+    <div class="about-content">
+        <h2 class="about-title">AI-Powered Insurance Claim Prediction</h2>
+        
+        <p>AI enhances **accuracy, fraud detection, and efficiency** in insurance claims, ensuring fair processing and reduced risks.</p>
+        <br>
+        
+       
+        <h2>📌 <strong>How AI Helps?</strong></h2>
+        <ul>
+            <li><span class="highlight">Risk Prediction:</span> Analyzes data to assess claim probability.</li>
+            <li><span class="highlight">Fraud Detection:</span> Identifies suspicious claims instantly.</li>
+            <li><span class="highlight">Faster Approvals:</span> Reduces manual effort for quick processing.</li>
+        </ul>
+     <br>
+     <br>
+        <p>AI ensures **cost savings, accuracy, and a seamless customer experience**. 🚀</p>
+    </div>
+    
+
+
+    </div>
+    <br>
+    <br>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="about-title">Check Your BMI</h2>
+    
+    <p>Check your BMI Before Next Step ....🚀</p>
+<br>
+
+    <div class="box">
+        <h2>BMI Calculator</h2>
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" placeholder="Enter weight">
+        <br>
+        <label>Height (cm):</label>
+        <input type="number" id="height" placeholder="Enter height">
+        <br>
+        <button onclick="calculateBMI()">Calculate BMI</button>
+        <p id="result"></p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h2 class="about-title">HOW TO USE</h2>
+    <br>
+    <a href="https://ibb.co/Y4CwNL9H">
+        <img src="https://i.ibb.co/TDfdwgX9/URL-QR-Code-1.png" alt="URL-QR-Code-1" border="0" width="300" height="300">
+      </a>  
+      <br>  
+      <a href="https://inducodes.wixstudio.com/projectkill">View Image</a>
+<br>
+<br>
+
+<br>       
+<br>
+<br>       
+<br> 
+
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+<body>
+    <h2 class="about-title">OUR TEAM</h2>
+    <div class="team-container">
+        <div class="team-member">
+            <img src="https://i.ibb.co/zThQ51RH/Screenshot-2025-02-03-054211.png" alt="Member 1">
+            <p>ABHI</p>
+        </div>
+        <div class="team-member">
+            <img src="https://i.ibb.co/zThQ51RH/Screenshot-2025-02-03-054211.png"  alt="Member 2">
+            <p>SRIRAM</p>
+        </div>
+        <div class="team-member">
+            <img src="https://i.ibb.co/zThQ51RH/Screenshot-2025-02-03-054211.png" alt="Member 3">
+            <p>VENKATASHA</p>
+        </div>
+        <div class="team-member">
+            <img src="https://i.ibb.co/zThQ51RH/Screenshot-2025-02-03-054211.png" alt="Member 4">
+            <p>BOBBY</p>
+        </div>
+        <div class="team-member">
+            <img src="https://i.ibb.co/zThQ51RH/Screenshot-2025-02-03-054211.png" alt="Member 4">
+            <p>MAHESH</p>
+        </div>
+    </div>
+    <br>
+<br>
+
+
+<br><br>
+
+    <div class="animation-jump">
+        <dotlottie-player src="https://lottie.host/f433ceef-aea8-4ff2-9530-f4a2ac20e002/ueFyHNtNzE.lottie" background="transparent" speed="1" style="width: 500px; height: 350px;" loop autoplay></dotlottie-player>
+    </div>
+
+   
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+   
+    
+    <a href="/home" class="btn">Get Started</a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+    <h2 class="about-title">CONTACT US</h2>
+    <div class="animation-container">
+        <!-- Left Side Animation -->
+        <div class="left-animation">
+            <dotlottie-player 
+                src="https://lottie.host/463fbf7f-362d-4ec9-8d3a-3162c5c98121/DOvDGXyhy9.lottie" 
+                background="transparent" 
+                speed="1" 
+                style="width: 600px; height: 600px" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+        </div>
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdw6GQa46aWLxat6PHH2jBZ-FZtkeTF3BIDAIuQtj4PCtmvJw/viewform?embedded=true" 
+        width="600" 
+        height="800" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0" 
+        style="display: block; margin: auto; position: relative; left: 50px; top: 20px;">
+    Loading…
+</iframe>
+       <div>
+        <!-- Button with Animation -->
+        <a href="/home" class="animated-button">
+            <dotlottie-player 
+                src="https://lottie.host/4715f8ae-46c2-4146-835f-cfdb851f4c6f/Jqh0Zw339j.lottie" 
+                background="transparent" 
+                speed="1" 
+                style="width: 40px; height: 40px" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+            <br>
+            <br>
+            <br>
+            <span class="button-text">Click Me</span>
+        </a>
+    </div>
+       
+
+
+
+
+
+    <script>
+        function calculateBMI() {
+            let weight = document.getElementById("weight").value;
+            let height = document.getElementById("height").value / 100; // Convert cm to meters
+
+            if (weight > 0 && height > 0) {
+                let bmi = (weight / (height * height)).toFixed(2);
+                let category = "";
+
+                if (bmi < 18.5) category = "Underweight";
+                else if (bmi < 24.9) category = "Normal weight";
+                else if (bmi < 29.9) category = "Overweight";
+                else category = "Obese";
+
+                document.getElementById("result").innerHTML = `Your BMI: <b>${bmi}</b> (${category})`;
+            } else {
+                document.getElementById("result").innerHTML = "Please enter valid values!";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Claim Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0px 0px 10px #ccc;
+            border-radius: 5px;
+            width: 400px;
+            margin-top: 20px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .form-group {
+            width: 50%;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select, button {
+            display: block;
+            margin: 8px 0;
+            padding: 10px;
+            width: 100%;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Home Insurance Claim Prediction</h2>
+
+    <form action="/house/predict" method="post">
+        <label for="property_age">Property Age:</label>
+        <input type="number" id="property_age" name="property_age" required min="0">
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="location_risk">Location Risk:</label>
+                <select id="location_risk" name="location_risk" required>
+                    <option value="0">Low</option>
+                    <option value="1">Medium</option>
+                    <option value="2">High</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="disaster_history">Disaster History:</label>
+                <select id="disaster_history" name="disaster_history" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="construction_type">Construction Type:</label>
+                <select id="construction_type" name="construction_type" required>
+                    <option value="0">Wood</option>
+                    <option value="1">Brick</option>
+                    <option value="2">Concrete</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="insurance_type">Insurance Type:</label>
+                <select id="insurance_type" name="insurance_type" required>
+                    <option value="0">Basic</option>
+                    <option value="1">Standard</option>
+                    <option value="2">Premium</option>
+                </select>
+            </div>
+        </div>
+
+        <label for="property_value">Property Value (in Lakhs):</label>
+        <input type="number" id="property_value" name="property_value" required min="1">
+
+        <label for="owner_age">Owner Age:</label>
+        <input type="number" id="owner_age" name="owner_age" required min="18">
+
+        <label for="past_claims">Past Claims:</label>
+        <select id="past_claims" name="past_claims" required>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5+</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+        <h3 class="result">Prediction: {{ result }}</h3>
+    {% endif %}
+
+</body>
+</html>
